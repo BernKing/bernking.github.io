@@ -1,4 +1,3 @@
-
 # Introduction
 
 The current blog post describes de decryption process of Chrome saved passwords. While I found several resources explaining the process in Python, the ones available in C/C++ didnt' satisfy me. Therefore, I decided to build and create my own write-up about the process.
@@ -6,21 +5,19 @@ The current blog post describes de decryption process of Chrome saved passwords.
 A lot of malware tools have the functionality to do what was described above, steal passwords and send them to a C2 server.
 In this write up I will only focus on the functionality of stealing Chrome passwords alone and possibly, in the future, try to connect the technique called Process Hallowing and others to evade AV and EDR detections.
 
-
 ---
 
 # Process Overview
-
 
 As of 2024, Chrome uses the AES-GCM algorithm to store sensitive data locally. This means your passwords are stored somewhere on your drive. To decrypt these passwords, we need to find two files:
 
 1. The file where the encryption key is stored, called `Local State` (a JSON file).
 2. The file where the encrypted passwords are stored, called `Login Data` (an SQLite database).
 
-_Note: We should also check if the current system is Windows and if Chrome is installed._
-
+_Note: We should also check if the current system is Windows and if Chrome is installed. We checked the system with the `#ifdef` _WIN32 system and the chrome with `IsChromeInstalled()` function._
 
 ---
+
 # Getting the files directories
 
 Of course, we could just grab the directory of the files on our PC and hardcode them into the code, but every username is different from person to person. Therefore, in order to be more organized, learn more about file searching, and ensure it works on every Windows machine, I decided to build two functions
@@ -66,6 +63,7 @@ _snwprintf_s(loginDataPath, MAX_PATH, L"%s\\AppData\\Local\\Google\\Chrome\\User
 ```
 
 ---
+
 # Getting the encrypted_key `getEncryptedKey`
 
 The encrypted key is stored in a JSON file. I'm not going to go in-depth about JSON files and how they work, but what you need to know is that it is a plain text file written in JavaScript Object Notation used to store data. Usually, it is used to store data in [attribute–value pairs](https://en.wikipedia.org/wiki/Attribute%E2%80%93value_pair "Attribute–value pair") and [arrays](https://en.wikipedia.org/wiki/Array_data_type "Array data type").
@@ -83,6 +81,7 @@ To understand the format and see how the encrypted key is stored, we can use a J
 ```
 
 Bingo! As we can see, the `encrypted_key` is stored inside the `os_crypt` object.
+
 ## Extracting the key:
 
 The fastest way to find a key in a JSON file is to use a JSON library. To fulfill my needs, I chose to use a powerful and user-friendly library: [nlohmann JSON](https://github.com/nlohmann/json).
@@ -111,6 +110,7 @@ First, we open the `Local State` file and parse it into a JSON object named `loc
   }
   okay("Key os_crypt found.");
 ```
+
 We then check if the "os_crypt" object exists within the JSON data.
 
 ```cpp
@@ -138,7 +138,6 @@ With this, we have successfully retrieved the `encrypted_key` and can proceed to
 
 ## Decrypting the Key `decryptKey`
 
-
 Now that we have the key, we need to decrypt it.
 
 After a bit of Google searching, we learned two important things about this key:
@@ -151,8 +150,6 @@ Fortunately, the WIN32 API provides the right functions to reverse this process.
 The `decryptKey` function will cover these two steps. Remember, I won't be diving deep into how these functions work. For more information, please check the WIN32 API documentation. Hyperlinks are provided in the names of the functions mentioned above.
 
 ### Base64 decoding (`CryptStringToBinaryA` function)
-
-
 
 ```c++
 DWORD decodedBinarySize = 0;
@@ -171,8 +168,8 @@ if (!CryptStringToBinaryA(encrypted_key.c_str(), 0, CRYPT_STRING_BASE64, decoded
     return {};
 }
 ```
-Following this, a vector of bytes with the previously determined size is initialized, and the actual decoding is performed. This vector is going to hold the now Base64 decoded key. After these two steps, we have completed the first part. In the next step, we are going to decrypt the key so that we can use it later.
 
+Following this, a vector of bytes with the previously determined size is initialized, and the actual decoding is performed. This vector is going to hold the now Base64 decoded key. After these two steps, we have completed the first part. In the next step, we are going to decrypt the key so that we can use it later.
 
 ---
 
@@ -189,21 +186,21 @@ Before starting the decryption process, we need to note that before the key is s
 ```cpp
 decodedBinaryData.erase(decodedBinaryData.begin(), decodedBinaryData.begin() + 5);`
 ```
+
 With this piece of code we erase the first 5 bytes of the decoded binary data which are equivalent to the `DPAPI` suffix.
 
-<details>
-
-<summary>Understanding the DATA_BLOB Structure. </summary>
-
-The `DATA_BLOB` structure is used to represent binary data in the Windows API. It consists of two members:
- 	
- -`cbData` : A DWORD value representing the lenght, in bytes, of the `pbData`.
- -`pbData` : A pointer to the binary data.
- 
- This structure is employed in cryptographic functions to pass data between different stages, such as from the Base64 decoding to the actual decryption. In the context of our function, `DataInput` holds the decoded binary data along with its size, and `DataOutput` is used to store the decrypted key, which is the result of performing the `CryptUnprotectData` function on the `DataInput` Data Blob.
- For more details, refer to the [Microsoft documentation on DATA_BLOB](https://docs.microsoft.com/en-us/windows/win32/api/wincrypt/ns-wincrypt-data_blob).
-
-</details>
+> [!NOTE]
+> # Understanding the DATA_BLOB Structure.  
+>
+> The `DATA_BLOB` structure is used to represent binary data in the Windows API. It consists of two members:
+> 	
+> - `cbData` : A DWORD value representing the lenght, in bytes, of the `pbData`.
+> - `pbData` : A pointer to the binary data.
+> 
+> This structure is employed in cryptographic functions to pass data between different stages, such as from the Base64 
+> decoding to the actual decryption. In the context of our function, `DataInput` holds the decoded binary data along with its size, and `DataOutput` is used to 
+> store the decrypted key, which is the result of performing the `CryptUnprotectData` function on the `DataInput` Data Blob.
+> For more details, refer to the [Microsoft documentation on DATA_BLOB](https://docs.microsoft.com/en-us/windows/win32/api/wincrypt/ns-wincrypt-data_blob).
 
 ```c++
 DATA_BLOB DataInput;
@@ -214,9 +211,8 @@ DataInput.pbData = decodedBinaryData.data();
 ```
 
 Two `DATA_BLOB` structures are initialized - one for input and one for output. The input structure holds the decoded binary data, while the output structure will store the decrypted key.
-
 It's important to note that we need to use `static_cast<DWORD>` on the `decodedBinaryData.size()` output because its type is `unsigned integral` and we need a `DWORD` type.
-``
+
 ```c++
 if (!CryptUnprotectData(&DataInput, NULL, NULL, NULL, NULL, 0, &DataOutput)) {
 	warn("Error decrypting data. Error %ld", GetLastError());
@@ -226,6 +222,7 @@ if (!CryptUnprotectData(&DataInput, NULL, NULL, NULL, NULL, 0, &DataOutput)) {
 
 return DataOutput;
 ```
+
 The `CryptUnprotectData` function is called with `DataInput`, and if successful, the decrypted data is stored in `DataOutput`.
 
 In the end, we return `DataOutput`, which contains the now decrypted and ready-to-use key.
@@ -256,6 +253,7 @@ if (!CopyFileW(loginDataPath.c_str(), copyLoginDataPath.c_str(), FALSE)) {
 	return EXIT_FAILURE;
 }
 ```
+
 To copy the file, we simply copy the original path, which is the output from the `FindLoginData` and append an "a" to the end so a copy with a different name is created. Then, we use the [CopyFileW](https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-copyfilew) function from the winbase.h API.
 
 ```c++
@@ -265,36 +263,32 @@ To copy the file, we simply copy the original path, which is the output from the
 
   openingStatus = sqlite3_open_v2(string_converted_path.c_str(), &loginDataBase, SQLITE_OPEN_READONLY, nullptr);
 ```
+
 Now we can start the process of reading the database. As stated before, we open the copied database.
 
-
 ```c++
-
   const char* sql = "SELECT origin_url, username_value, password_value, blacklisted_by_user FROM logins";
   sqlite3_stmt* stmt = nullptr;
   openingStatus = sqlite3_prepare_v2(loginDataBase, sql, -1, &stmt, nullptr);
-
 ```
 We prepare an SQL statement to select the necessary columns from the `logins` table.
 This statement selects the `origin_url`, `username_value`, `password_value`, and `blacklisted_by_user` columns from the `logins` table.
 
-<details>
-
-<summary>Understanding the SQLite Data Base Structure and Statement. </summary>
-
- There is a bit to unpack here. First, we are writing a normal SQL query where we use the SELECT keyword to extract certain information FROM the logins table, which is present in the database.
- To understand the structure of the database, we can make use of [DB Browser for SQLite](https://sqlitebrowser.org/), an open-source tool designed for people who want to create, search, and edit [SQLite](https://www.sqlite.org/) database files.
- ![[media/Pastedimage20240714235341.png]]
- By taking a quick look, we realize that there are nine tables present in this database, and we quickly come to the conclusion that the logins table is probably the one that matters.
- Now, using the Browse Data option, we can take a look inside the logins table
- ![[media/Pastedimage20240715121641.png]]
- This is a small snippet of the columns present, and we see that, in order to log in to an account, we need the three things we are extracting from the database: the link (origin_url), the username (username_value), and the password (password_value), which we can see is an encrypted BLOB. I also decided to extract the blacklisted_by_user column. This column is either a 1 or a 0, meaning:
- - 0: The login information is not blacklisted and can be used normally.
- - 1: The login information has been blacklisted by the user, meaning it should not be used for autofill or other purposes.
-   
- So, if the value is 1, we probably don't have enough information about that account.
-
-</details>
+> [!NOTE]
+> # Understanding the SQLite Data Base Structure and Statement. 
+>
+> There is a bit to unpack here. First, we are writing a normal SQL query where we use the SELECT keyword to extract certain information FROM the logins table which is present in the database.
+> To understand the structure of the database, we can make use of [DB Browser for SQLite](https://sqlitebrowser.org/), an open-source tool designed for people who want to create, search, and edit [SQLite](https://www.sqlite.org/) database files.
+> ![Data Base Structure](media/Pastedimage20240714235341.png)
+> By taking a quick look, we realize that there are nine tables present in this database, and we quickly come to the conclusion that the logins table is probably the one that matters.
+> Now, using the Browse Data option, we can take a look inside the logins table.
+> ![Data Base Collumns](media/Pastedimage20240715121641.png)
+> This is a small snippet of the columns present, and we see that, in order to log in to an account, we need the three things we are extracting from the database: the link (origin_url), the username (username_value), and the password (password_value), which we can see is an encrypted BLOB. I also decided to extract the 
+> blacklisted_by_user column. This column is either a 1 or a 0, meaning:
+> - 0: The login information is not blacklisted and can be used normally.
+> - 1: The login information has been blacklisted by the user, meaning it should not be used for autofill or other purposes.
+>   
+> So, if the value is 1, we probably don't have enough information about that account.
 
 ```c++
 okay("Executed SQL Query.");
@@ -309,6 +303,7 @@ while ((openingStatus = sqlite3_step(stmt)) == SQLITE_ROW) {
 After sucessfully preparing the statement we use `sqlite3_step` to iterate over the rows in the `logins` table and extract the data.
 
 ---
+
 ## Preparing the data needed for the decryption
 
 Now starts the last major part of our program, the decryption of the password blob. As mentioned before, the password is AES-256 encrypted, which "is a specification for the [encryption](https://en.wikipedia.org/wiki/Encryption) of electronic data established by the U.S. [National Institute of Standards and Technology](https://en.wikipedia.org/wiki/National_Institute_of_Standards_and_Technology) (NIST) in 2001."
@@ -340,6 +335,7 @@ Here, we define an array `iv` with the size of `IV_SIZE`, which is 12 bytes. We 
 If the `passwordSize` is less than 15 bytes, we log a warning message and skip to the next iteration of the loop.
 
 Next, we allocate memory for the encrypted password and copy it from the blob:
+
 ```c++
 if (passwordSize <= (IV_SIZE + 3)) {
 	warn("Password size too small");
@@ -363,16 +359,17 @@ Finally, we copy the encrypted password from the `passwordBlob` into the `Passwo
 By dividing the IV and the encrypted password in this way, we ensure that we have the correct pieces of data needed for the AES-256 decryption process. 
 
 ---
+
 # Decrypting the Passwords (`decryptPassword`)
 
 Still inside our previous loop, after extracting the initialization vector (IV) and the encrypted password, we proceed to decrypt the password using the `decryptPassword` function.
-```c++
 
+```c++
 unsigned char decrypted[1024];
 decryptPassword(Password, passwordSize - (IV_SIZE + 3), decryptionKey.pbData, iv, decrypted);
 decrypted[passwordSize - (IV_SIZE + 3)] = '\0';
-
 ```
+
 First we define an array `decrypted` with a size of 1024 bytes to store the decrypted password. We then call the `decryptPassword` function, passing the encrypted password (`Password`), its size (`passwordSize - (IV_SIZE + 3)`), the decryption key (`decryptionKey.pbData`, obtained before), and the IV (`iv`). The decrypted data is stored in the `decrypted` array.
 
 The `decryptPassword` function is designed to decrypt the AES-256-GCM encrypted password blob. It is a small and direct function that is called during the loop of the database rows. 
@@ -385,7 +382,6 @@ The function takes five parameters:
 
 ```c++
 void decryptPassword(unsigned char* ciphertext, size_t ciphertext_len, unsigned char* key, unsigned char* iv, unsigned char* decrypted)
-
 ```
 
 To decrypt the password, we needed a tool/library to apply the AES-256 decryption process. After some searching and experimenting with different libraries, I decided to use the [Libsodium](https://doc.libsodium.org/) library. Libsodium is an easy-to-use software library for encryption, decryption, signatures, password hashing, and more. I found it straightforward to start with and very effective for decrypting data.
@@ -412,7 +408,6 @@ int result = crypto_aead_aes256gcm_decrypt(
 );
 ```
 
-
 ```c++
 if (result != 0) {
 	fprintf(stderr, "Decryption failed\n");
@@ -423,7 +418,6 @@ else {
 ```
 
 After the decryption attempt, the function checks the result. If decryption fails (`result != 0`), an error message is printed. If decryption is successful, the decrypted data is null-terminated to ensure it is properly handled as a string.
-
 
 ```c++
 okay("Origin URL: %s", originUrl);
@@ -437,7 +431,7 @@ After this process, we go back to the `loginDataParser` function and print the o
 
 After each pass of the loop that iterates over the rows of the database, this is the expected output:
 
-![[media/Pastedimage20240715145203.png]]
+![Expected Output](media/Pastedimage20240715145203.png)
 
 ---
 
@@ -456,4 +450,4 @@ To achieve my final goal, I used external libraries and referenced other people'
 
 This tool is intended for educational purposes only. Misuse of this tool can lead to legal consequences. Always ensure you have permission before using it on any system. The author is not responsible for any misuse of this tool.
 
-#maldev #passworddumping
+#maldev #passworddumping #chrome
