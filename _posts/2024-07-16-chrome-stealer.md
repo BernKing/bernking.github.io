@@ -5,6 +5,8 @@ The current blog post describes de decryption process of Chrome saved passwords.
 A lot of malware tools have the functionality to do what was described above, steal passwords and send them to a C2 server.
 In this write up I will only focus on the functionality of stealing Chrome passwords alone and possibly, in the future, try to connect the technique called Process Hallowing and others to evade AV and EDR detections.
 
+You can find the full code and additional details in my GitHub repository: [ChromeStealer](https://github.com/BernKing/ChromeStealer).
+
 ---
 
 # Process Overview
