@@ -191,7 +191,6 @@ decodedBinaryData.erase(decodedBinaryData.begin(), decodedBinaryData.begin() + 5
 
 With this piece of code we erase the first 5 bytes of the decoded binary data which are equivalent to the `DPAPI` suffix.
 
-> [!NOTE]
 > # Understanding the DATA_BLOB Structure.  
 >
 > The `DATA_BLOB` structure is used to represent binary data in the Windows API. It consists of two members:
