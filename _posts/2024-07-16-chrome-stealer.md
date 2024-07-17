@@ -433,6 +433,7 @@ After this process, we go back to the `loginDataParser` function and print the o
 After each pass of the loop that iterates over the rows of the database, this is the expected output:
 
 <figure><img src="media/Pastedimage20240715145203.png"><figcaption>Expected Output</figcaption></figure>
+
 ---
 
 # Conclusion and Acknowledgments
