@@ -276,15 +276,14 @@ Now we can start the process of reading the database. As stated before, we open 
 We prepare an SQL statement to select the necessary columns from the `logins` table.
 This statement selects the `origin_url`, `username_value`, `password_value`, and `blacklisted_by_user` columns from the `logins` table.
 
-> [!NOTE]
 > # Understanding the SQLite Data Base Structure and Statement. 
 >
 > There is a bit to unpack here. First, we are writing a normal SQL query where we use the SELECT keyword to extract certain information FROM the logins table which is present in the database.
 > To understand the structure of the database, we can make use of [DB Browser for SQLite](https://sqlitebrowser.org/), an open-source tool designed for people who want to create, search, and edit [SQLite](https://www.sqlite.org/) database files.
-> <figure><img src="media/Pastedimage20240714235341.png"><figcaption>Data Base Structure</figcaption></figure>
+> ![Data Base Tables](https://github.com/BernKing/bernking.github.io/blob/main/_posts/media/Pastedimage20240714235341.png)
 > By taking a quick look, we realize that there are nine tables present in this database, and we quickly come to the conclusion that the logins table is probably the one that matters.
 > Now, using the Browse Data option, we can take a look inside the logins table.
-> <figure><img src="media/Pastedimage20240715121641.png"><figcaption>Data Base Collumns</figcaption></figure>
+> ![Data Base Collumns](https://github.com/BernKing/bernking.github.io/blob/main/_posts/media/Pastedimage20240715121641.png)
 > This is a small snippet of the columns present, and we see that, in order to log in to an account, we need the three things we are extracting from the database: the link (origin_url), the username (username_value), and 
 > the password (password_value), which we can see is an encrypted BLOB. I also decided to extract the blacklisted_by_user column. This column is either a 1 or a 0, meaning:
 >
@@ -434,7 +433,7 @@ After this process, we go back to the `loginDataParser` function and print the o
 
 After each pass of the loop that iterates over the rows of the database, this is the expected output:
 
-<figure><img src="media/Pastedimage20240715145203.png"><figcaption>Expected Output</figcaption></figure>
+![Expected Output](https://github.com/BernKing/bernking.github.io/blob/main/_posts/media/Pastedimage20240715145203.png)
 
 ---
 
