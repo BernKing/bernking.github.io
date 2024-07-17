@@ -283,7 +283,8 @@ This statement selects the `origin_url`, `username_value`, `password_value`, and
 > By taking a quick look, we realize that there are nine tables present in this database, and we quickly come to the conclusion that the logins table is probably the one that matters.
 > Now, using the Browse Data option, we can take a look inside the logins table.
 > <figure><img src="media/Pastedimage20240715121641.png"><figcaption>Data Base Collumns</figcaption></figure>
-> This is a small snippet of the columns present, and we see that, in order to log in to an account, we need the three things we are extracting from the database: the link (origin_url), the username (username_value), and the password (password_value), which we can see is an encrypted BLOB. I also decided to extract the 
+> This is a small snippet of the columns present, and we see that, in order to log in to an account, we need the three things we are extracting from the database: the link (origin_url), the username (username_value), and 
+> the password (password_value), which we can see is an encrypted BLOB. I also decided to extract the 
 > blacklisted_by_user column. This column is either a 1 or a 0, meaning:
 > - 0: The login information is not blacklisted and can be used normally.
 > - 1: The login information has been blacklisted by the user, meaning it should not be used for autofill or other purposes.
