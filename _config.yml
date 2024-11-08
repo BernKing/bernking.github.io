@@ -3,7 +3,7 @@ title_left    : "Bern"
 title_right   : "King" # default: ""
 description   : "BernKing's personal blog on programming and cybersecurity projects."
 keywords      : "BernKing, programming, cybersecurity, blog, tech"
-url           : https://bernking.github.io/ # site url
+url           : https://bernking.xyz/ # site url
 baseurl       : "" # apply repo name like "/myproject" if used under gh-pages branch, else (under master branch) just leave empty/blank
 cover         : "" # image uri like logo/cover image for site seo
 
