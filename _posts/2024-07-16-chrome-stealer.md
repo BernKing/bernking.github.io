@@ -1,3 +1,19 @@
+---
+layout: post
+title: "Chrome Password Stealer"
+date: 2024-07-16
+categories: [maldev, passworddumping]
+banner: |
+    ________________________________________________________________________________________
+    _________ .__                                    _________ __                .__        
+    \_   ___ \|  |_________  ____   _____   ____    /   _____//  |_  ____ _____  |  |   ___________
+    /    \  \/|  |  \_  __ \/  _ \ /     \_/ __ \   \_____  \\   __\/ __ \\__  \ |  | _/ __ \_  __ \
+    \     \___|   Y  \  | \(  <_> )  Y Y  \  ___/   /        \|  | \  ___/ / __ \|  |_\  ___/|  | \/
+    \______  /___|  /__|   \____/|__|_|  /\___  > /_______  /|__|  \___  >____  /____/\___  >__|   
+           \/     \/                   \/     \/          \/           \/     \/          \/        
+    ________________________________________________________________________________________
+---
+
 # Introduction
 
 The current blog post describes de decryption process of Chrome saved passwords. While I found several resources explaining the process in Python, the ones available in C/C++ didnt' satisfy me. Therefore, I decided to build and create my own write-up about the process.
