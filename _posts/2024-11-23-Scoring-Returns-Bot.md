@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Scoring Returns Bot: A Discord Bot for Live Football Tracking"
-date: 2024-11-22
+date: 2024-11-23
 categories: [discord bot, football bot]
 banner_img: "/assets/images/logo_scoring_banner.png"
 ---
