@@ -1,0 +1,66 @@
+<!-- Header Component -->
+<style>
+  .site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4rem;
+    padding-top: 2rem;
+  }
+  
+  .logo {
+    font-family: monospace;
+    font-size: 1.5rem;
+    letter-spacing: -0.05em;
+    font-weight: normal;
+  }
+  
+  .navbar ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar li {
+    margin-left: 1.5rem;
+  }
+  
+  .navbar a {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+  
+  .navbar a:hover {
+    opacity: 0.8;
+  }
+
+  @media (max-width: 768px) {
+    .navbar {
+      display: none;
+    }
+  }
+  
+  /* Light/Dark mode specific styles */
+  body.light-mode .site-header {
+    color: #212529;
+  }
+  
+  body.dark-mode .site-header {
+    color: #f8f9fa;
+  }
+</style>
+
+<header class="site-header">
+  <h1 class="logo">BernKing</h1>
+  <nav class="navbar">
+    <ul>
+      <li><a href="{{ '/about' | prepend: site.baseurl }}">About</a></li>
+      <li><a href="https://github.com/BernKing" target="_blank">GitHub</a></li>
+      <li><a href="https://twitter.com/X" target="_blank">X</a></li>
+      <li><a href="mailto:contact@example.com">Contact</a></li>
+      <li><a href="{{ '/work' | prepend: site.baseurl }}">Work</a></li>
+    </ul>
+  </nav>
+</header>

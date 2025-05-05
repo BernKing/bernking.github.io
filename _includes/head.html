@@ -96,6 +96,7 @@
   {% endif %}
 
   <link rel="stylesheet" href="{{ "/assets/css/main.css" | prepend: site.baseurl | prepend: site.url }}">
+  <link rel="stylesheet" href="{{ "/assets/css/theme.css" | prepend: site.baseurl | prepend: site.url }}">
 
   <!-- Favicon setup -->
   <link rel="icon" type="image/png" href="/assets/icons/favicon.ico/favicon-96x96.png" sizes="96x96">
@@ -103,4 +104,31 @@
   <link rel="shortcut icon" href="/assets/icons/favicon.ico/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/favicon.ico/apple-touch-icon.png">
   <link rel="manifest" href="/assets/icons/favicon.ico/site.webmanifest">
+
+  <!-- Theme initialization script -->
+  <script>
+    (function() {
+      // Check if localStorage is available
+      function isLocalStorageAvailable() {
+        try {
+          localStorage.setItem('test', 'test');
+          localStorage.removeItem('test');
+          return true;
+        } catch(e) {
+          return false;
+        }
+      }
+      
+      // Initialize theme on page load
+      document.addEventListener('DOMContentLoaded', function() {
+        if (isLocalStorageAvailable()) {
+          const savedTheme = localStorage.getItem('theme');
+          if (savedTheme) {
+            document.body.className = '';
+            document.body.classList.add(savedTheme + '-mode');
+          }
+        }
+      });
+    })();
+  </script>
 </head>

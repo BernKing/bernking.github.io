@@ -1,0 +1,99 @@
+/* Dark/Light Mode Styles */
+
+/* Reset some defaults */
+body {
+  margin: 0;
+}
+
+/* Dark mode styles (default) */
+body.dark-mode {
+  /* background-color: black; */
+  background-color: #121212;
+  color: white;
+}
+
+body.dark-mode .moon-icon {
+  fill: #ffffff;
+}
+
+body.dark-mode a {
+  color: white;
+}
+
+body.dark-mode a:hover {
+  color: #d1d5db;
+}
+
+body.dark-mode .text-muted,
+body.dark-mode .card-description,
+body.dark-mode .social-links h2,
+body.dark-mode .currently h3 {
+  color: #9ca3af;
+}
+
+body.dark-mode .card-year {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #d1d5db;
+  border: 1px solid #374151;
+}
+
+body.dark-mode .category-badge {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border: 1px solid #6b7280;
+}
+
+/* Light mode styles */
+body.light-mode {
+  /* background-color: #f8f9fa; */
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+body.light-mode .moon-icon {
+  fill: #212529;
+}
+
+body.light-mode a {
+  color: #212529;
+}
+
+body.light-mode a:hover {
+  color: #6c757d;
+}
+
+body.light-mode .text-muted,
+body.light-mode .card-description,
+body.light-mode .social-links h2,
+body.light-mode .currently h3 {
+  color: #6c757d;
+}
+
+body.light-mode .card-year {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #6c757d;
+  border: 1px solid #dee2e6;
+}
+
+body.light-mode .category-badge {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #212529;
+  border: 1px solid #adb5bd;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+} 

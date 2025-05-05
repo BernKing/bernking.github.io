@@ -1,0 +1,233 @@
+---
+layout: landing
+title: Landing Copy
+permalink: /landing-copy/
+---
+
+<style>
+  /* Layout */
+  .container {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  
+  /* Hero Section */
+  .hero {
+    margin-bottom: 4rem;
+  }
+  
+  .hero h2 {
+    font-size: 3rem;
+    font-weight: normal;
+    line-height: 1.2;
+    max-width: 48rem;
+    margin-bottom: 1.5rem;
+    font-family: serif;
+  }
+  
+  .currently {
+    margin-top: 3rem;
+  }
+  
+  .currently h3 {
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+  
+  .currently p {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .underline {
+    text-decoration: underline;
+  }
+  
+  /* Projects Grid */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .projects-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  @media (min-width: 768px) {
+    .projects-row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  /* Project Card */
+  .project-card {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .project-card:hover .card-image {
+    transform: scale(1.05);
+  }
+  
+  .card-image-container {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+  }
+  
+  .card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .card-content {
+    padding: 1rem 0;
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card-title {
+    font-family: monospace;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    margin: 0;
+  }
+  
+  .card-year {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    border-radius: 0.375rem;
+  }
+  
+  .card-description {
+    font-size: 0.875rem;
+    margin: 0;
+  }
+  
+  /* Card Categories */
+  .card-categories {
+    margin-top: 0.75rem;
+  }
+
+  .category-badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    border-radius: 0.375rem;
+    margin-right: 0.375rem;
+    margin-bottom: 0.375rem; /* Added for spacing if tags wrap */
+    font-family: monospace; /* Match title font */
+    text-transform: uppercase; /* Match title case */
+  }
+</style>
+
+<main class="container">
+  <!-- Include the header-copy.html file -->
+  {% include header-copy.html %}
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>Computer Science student interested in developing and breaking software.</h2>
+    
+    <div class="currently">
+      <h3>CURRENTLY</h3>
+      <p>Collaborating with companies from pre-seed to post-IPO.</p>
+      <p>Studying <span class="underline">design and information systems</span> at the University of Toronto.</p>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="projects">
+    <!-- First row of projects -->
+    <div class="projects-row">
+      <a href="#" class="project-card">
+        <div class="card-image-container">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-oW4uTj9H2V3IfDyHFtDeYlM7FuvSWW.png" alt="Project One" class="card-image">
+        </div>
+        <div class="card-content">
+          <div class="card-header">
+            <h3 class="card-title">Project One</h3>
+            <span class="card-year">Apr 15, 2024</span>
+          </div>
+          <p class="card-description">AI-powered, collaborative code editor (1400+ stars)</p>
+          <div class="card-categories">
+            <span class="category-badge">AI</span>
+            <span class="category-badge">Development</span>
+          </div>
+        </div>
+      </a>
+      
+      <a href="#" class="project-card">
+        <div class="card-image-container">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-ptuCs7sGXElbiBySaI7LDKlohE2yYd.png" alt="Project Two" class="card-image">
+        </div>
+        <div class="card-content">
+          <div class="card-header">
+            <h3 class="card-title">Project Two</h3>
+            <span class="card-year">Mar 28, 2024</span>
+          </div>
+          <p class="card-description">Distributed training marketplace to democratize large AI models</p>
+          <div class="card-categories">
+            <span class="category-badge">AI</span>
+            <span class="category-badge">Marketplace</span>
+          </div>
+        </div>
+      </a>
+    </div>
+    
+    <!-- Second row of projects -->
+    <div class="projects-row">
+      <a href="#" class="project-card">
+        <div class="card-image-container">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-ONW7FBQnBPzQ3OIjRO7GGwPqI8iOUW.png" alt="Project Three" class="card-image">
+        </div>
+        <div class="card-content">
+          <div class="card-header">
+            <h3 class="card-title">Project Three</h3>
+            <span class="card-year">Nov 12, 2023</span>
+          </div>
+          <p class="card-description">Optimizing earthquake resistant construction</p>
+          <div class="card-categories">
+            <span class="category-badge">Simulation</span>
+            <span class="category-badge">Engineering</span>
+          </div>
+        </div>
+      </a>
+      
+      <a href="#" class="project-card">
+        <div class="card-image-container">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-oW4uTj9H2V3IfDyHFtDeYlM7FuvSWW.png" alt="Project Four" class="card-image">
+        </div>
+        <div class="card-content">
+          <div class="card-header">
+            <h3 class="card-title">Project Four</h3>
+            <span class="card-year">Sep 5, 2023</span>
+          </div>
+          <p class="card-description">City simulation of human behavior and interactions</p>
+          <div class="card-categories">
+            <span class="category-badge">Simulation</span>
+            <span class="category-badge">Social Science</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+</main>

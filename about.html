@@ -1,0 +1,136 @@
+---
+layout: landing
+title: About
+permalink: /about/
+---
+
+<style>
+  /* Reset some defaults */
+  body {
+    margin: 0;
+  }
+  
+  /* Dark mode styles (default) */
+  body.dark-mode {
+    background-color: black;
+    color: white;
+  }
+  
+  /* Light mode styles */
+  body.light-mode {
+    background-color: #f8f9fa;
+    color: #212529;
+  }
+  
+  /* Layout */
+  .container {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  
+  /* About content */
+  .about-content {
+    max-width: 48rem;
+    margin-bottom: 4rem;
+  }
+  
+  .about-content h1 {
+    font-size: 3rem;
+    font-weight: normal;
+    line-height: 1.2;
+    margin-bottom: 3rem;
+    font-family: serif;
+  }
+  
+  .about-content .text-container {
+    margin-bottom: 4rem;
+  }
+  
+  .about-content p {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+  
+  .underline {
+    text-decoration: underline;
+  }
+  
+  /* Social links */
+  .social-links h2 {
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+  
+  body.dark-mode .social-links h2 {
+    color: #9ca3af;
+  }
+  
+  body.light-mode .social-links h2 {
+    color: #6c757d;
+  }
+  
+  .social-links a {
+    display: inline-block;
+    margin-right: 1.5rem;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  body.dark-mode .social-links a {
+    color: white;
+  }
+  
+  body.dark-mode .social-links a:hover {
+    color: #d1d5db;
+  }
+  
+  body.light-mode .social-links a {
+    color: #212529;
+  }
+  
+  body.light-mode .social-links a:hover {
+    color: #6c757d;
+  }
+</style>
+
+<main class="container">
+  <!-- Include the header-copy.html file -->
+  {% include header-copy.html %}
+
+  <!-- About Content -->
+  <section class="about-content">
+    <h1>About</h1>
+    
+    <div class="text-container">
+      <p>I believe the world can be a beautiful place when we decide to make it so.</p>
+      
+      <p>
+        Currently running an independent design practice in Toronto. I'm also pursuing a Bachelor of Information
+        at UofT, where I'm exploring at the
+        <a href="#" class="underline">intersection of technology and culture</a>.
+      </p>
+      
+      <p>
+        Previously, I've designed public tools for the Ontario government, startup e-commerce experiences, and
+        COVID-19 data dashboards. I studied biomedical engineering at UWaterloo and left to bet on myself in
+        sophomore year. I've since worked as a chief of staff at a multinational design company, travelled the
+        world, and found a deep appreciation for life.
+      </p>
+    </div>
+    
+    <div class="social-links">
+      <h2>FIND ME HERE</h2>
+      <div>
+        <a href="https://twitter.com/bernKing20" target="_blank" rel="noopener noreferrer">Twitter</a>
+        <a href="https://github.com/BernKing" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="#">CV</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="/assets/js/theme.js"></script>
