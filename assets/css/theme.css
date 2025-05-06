@@ -43,6 +43,82 @@ body.dark-mode .category-badge {
   border: 1px solid #6b7280;
 }
 
+/* Dark mode styles for posts */
+body.dark-mode .post-title {
+  color: #ffffff;
+}
+
+body.dark-mode .post-meta {
+  color: #9ca3af;
+}
+
+body.dark-mode .post-content p,
+body.dark-mode .post-content li {
+  color: #e5e7eb;
+}
+
+body.dark-mode .post-content h1,
+body.dark-mode .post-content h2,
+body.dark-mode .post-content h3,
+body.dark-mode .post-content h4,
+body.dark-mode .post-content h5,
+body.dark-mode .post-content h6 {
+  color: #ffffff;
+}
+
+body.dark-mode .post-content blockquote {
+  border-left-color: #4b5563;
+  background-color: #1f2937;
+}
+
+body.dark-mode .post-content blockquote p {
+  color: #d1d5db;
+}
+
+/* Dark mode code block styles */
+body.dark-mode .highlight,
+body.dark-mode .highlight pre,
+body.dark-mode .highlight code,
+body.dark-mode .highlighter-rouge .highlight {
+  background-color: #1e1e1e !important;
+  color: #e5e7eb;
+}
+
+body.dark-mode .highlight .c { color: #608b4e; } /* Comment */
+body.dark-mode .highlight .err { color: #f44747; background-color: transparent; } /* Error */
+body.dark-mode .highlight .k { color: #569cd6; } /* Keyword */
+body.dark-mode .highlight .o { color: #d4d4d4; } /* Operator */
+body.dark-mode .highlight .cm { color: #608b4e; } /* Comment.Multiline */
+body.dark-mode .highlight .cp { color: #608b4e; } /* Comment.Preproc */
+body.dark-mode .highlight .c1 { color: #608b4e; } /* Comment.Single */
+body.dark-mode .highlight .cs { color: #608b4e; } /* Comment.Special */
+body.dark-mode .highlight .gd { color: #f44747; background-color: transparent; } /* Generic.Deleted */
+body.dark-mode .highlight .gi { color: #6a9955; background-color: transparent; } /* Generic.Inserted */
+body.dark-mode .highlight .kd { color: #569cd6; } /* Keyword.Declaration */
+body.dark-mode .highlight .s { color: #ce9178; } /* Literal.String */
+body.dark-mode .highlight .na { color: #9cdcfe; } /* Name.Attribute */
+body.dark-mode .highlight .nb { color: #dcdcaa; } /* Name.Builtin */
+body.dark-mode .highlight .nc { color: #4ec9b0; } /* Name.Class */
+body.dark-mode .highlight .nf { color: #dcdcaa; } /* Name.Function */
+body.dark-mode .highlight .nt { color: #569cd6; } /* Name.Tag */
+body.dark-mode .highlight .nv { color: #9cdcfe; } /* Name.Variable */
+
+/* Dark mode inline code */
+body.dark-mode code {
+  background-color: #2d2d2d;
+  color: #e5e7eb;
+  border: 1px solid #444;
+}
+
+/* Dark mode share section */
+body.dark-mode .share {
+  border-top-color: #374151;
+}
+
+body.dark-mode .share p {
+  color: #9ca3af;
+}
+
 /* Light mode styles */
 body.light-mode {
   /* background-color: #f8f9fa; */

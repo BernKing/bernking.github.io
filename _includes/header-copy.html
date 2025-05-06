@@ -47,21 +47,119 @@
   /* Light/Dark mode specific styles */
   body.light-mode .site-header {
     color: #212529;
+    background-color: #f8f9fa;
   }
   
   body.dark-mode .site-header {
     color: #f8f9fa;
+    background-color: #121212;
+  }
+
+  body.light-mode .menu-toggle .bar {
+    background-color: #212529;
+  }
+  
+  body.dark-mode .menu-toggle .bar {
+    background-color: #f8f9fa;
+  }
+
+  /* Logo link style */
+  .logo-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Hamburger Menu Styles */
+  .menu-toggle {
+    display: none; /* Hidden by default, shown on mobile */
+    background: none;
+    border: none;
+    font-size: 1.5rem; /* Adjust size as needed */
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001; /* Ensure it stays above the navbar */
+    position: relative;
+  }
+
+  /* Styles for the bars of the hamburger icon */
+  .menu-toggle .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: currentColor; /* Uses the header text color */
+    transition: all 0.3s ease-in-out;
+  }
+
+  @media (max-width: 768px) {
+    .navbar {
+      display: none; /* Initially hidden on mobile */
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: inherit; /* Inherit from parent */
+      z-index: 1000;
+      padding: 5rem 1rem 1rem;
+    }
+
+    body.light-mode .navbar {
+      background-color: rgba(248, 249, 250, 0.95); /* Light mode background with opacity */
+    }
+    
+    body.dark-mode .navbar {
+      background-color: rgba(18, 18, 18, 0.95); /* Dark mode background with opacity */
+    }
+
+    .navbar.active {
+      display: flex; /* Show when active */
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .navbar ul {
+      flex-direction: column;
+      width: 100%;
+      text-align: center;
+    }
+
+    .navbar li {
+      margin-left: 0;
+      margin-bottom: 1.5rem;
+      width: 100%;
+    }
+    
+    .navbar li:last-child {
+      margin-bottom: 0;
+    }
+
+    .navbar a {
+      display: block; /* Make links take full width for easier tapping */
+      padding: 0.75rem;
+      font-size: 1.25rem;
+    }
+
+    .menu-toggle {
+      display: block; /* Show hamburger on mobile */
+    }
   }
 </style>
 
 <header class="site-header">
-  <h1 class="logo">BernKing</h1>
+  <h1 class="logo"><a href="{{ '/' | prepend: site.baseurl }}" class="logo-link">BernKing</a></h1>
+  <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
   <nav class="navbar">
     <ul>
       <li><a href="{{ '/about' | prepend: site.baseurl }}">About</a></li>
       <li><a href="https://github.com/BernKing" target="_blank">GitHub</a></li>
       <li><a href="https://x.com/bernKing20" target="_blank">X</a></li>
-      <li><a href="mailto:contact@example.com">Contact</a></li>
+      <li><a href="mailto:bernardoalmeida2004@gmail.com">Contact</a></li>
     </ul>
   </nav>
+  <script defer src="/assets/js/site-header.js"></script>
 </header>
