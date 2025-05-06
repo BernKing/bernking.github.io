@@ -9,6 +9,7 @@ published: true
     // Apply theme immediately to prevent flash
     const savedTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.classList.add(savedTheme + '-mode');
+    document.body.classList.add(savedTheme + '-mode');
   </script>
   <body>
     <main class="wrapper">

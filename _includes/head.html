@@ -124,7 +124,9 @@
         if (isLocalStorageAvailable()) {
           const savedTheme = localStorage.getItem('theme');
           if (savedTheme) {
-            document.body.className = '';
+            document.documentElement.classList.remove('light-mode', 'dark-mode');
+            document.body.classList.remove('light-mode', 'dark-mode');
+            document.documentElement.classList.add(savedTheme + '-mode');
             document.body.classList.add(savedTheme + '-mode');
           }
         }

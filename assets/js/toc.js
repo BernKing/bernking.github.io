@@ -40,9 +40,23 @@ document.addEventListener('DOMContentLoaded', function() {
   const tocToggle = tocContainer.querySelector('.toc-toggle');
   const tocHeader = tocContainer.querySelector('.floating-toc-header');
   
-  tocHeader.addEventListener('click', function() {
+  tocHeader.addEventListener('click', function(e) {
     tocContainer.classList.toggle('toc-expanded');
     tocToggle.textContent = tocContainer.classList.contains('toc-expanded') ? '▲' : '▼';
+    e.stopPropagation();
+  });
+  
+  // Close TOC when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!tocContainer.contains(e.target) && tocContainer.classList.contains('toc-expanded')) {
+      tocContainer.classList.remove('toc-expanded');
+      tocToggle.textContent = '▼';
+    }
+  });
+  
+  // Prevent clicks inside TOC content from closing it
+  tocContent.addEventListener('click', function(e) {
+    e.stopPropagation();
   });
   
   // Update current section on scroll
