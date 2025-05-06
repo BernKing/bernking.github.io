@@ -5,7 +5,12 @@ published: true
 <!DOCTYPE html>
 <html>
   {% include head.html %}
-  <body class="dark-mode">
+  <script>
+    // Apply theme immediately to prevent flash
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.classList.add(savedTheme + '-mode');
+  </script>
+  <body>
     <main class="wrapper">
       {{ content }}
       {% include footer-new.html %}

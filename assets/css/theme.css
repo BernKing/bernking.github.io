@@ -6,24 +6,32 @@ body {
 }
 
 /* Dark mode styles (default) */
+html.dark-mode,
 body.dark-mode {
   /* background-color: black; */
   background-color: #121212;
   color: white;
 }
 
+html.dark-mode .moon-icon,
 body.dark-mode .moon-icon {
   fill: #ffffff;
 }
 
+html.dark-mode a,
 body.dark-mode a {
   color: white;
 }
 
+html.dark-mode a:hover,
 body.dark-mode a:hover {
   color: #d1d5db;
 }
 
+html.dark-mode .text-muted,
+html.dark-mode .card-description,
+html.dark-mode .social-links h2,
+html.dark-mode .currently h3,
 body.dark-mode .text-muted,
 body.dark-mode .card-description,
 body.dark-mode .social-links h2,
@@ -31,12 +39,14 @@ body.dark-mode .currently h3 {
   color: #9ca3af;
 }
 
+html.dark-mode .card-year,
 body.dark-mode .card-year {
   background-color: rgba(0, 0, 0, 0.3);
   color: #d1d5db;
   border: 1px solid #374151;
 }
 
+html.dark-mode .category-badge,
 body.dark-mode .category-badge {
   background-color: rgba(255, 255, 255, 0.2);
   color: #ffffff;
@@ -44,19 +54,29 @@ body.dark-mode .category-badge {
 }
 
 /* Dark mode styles for posts */
+html.dark-mode .post-title,
 body.dark-mode .post-title {
   color: #ffffff;
 }
 
+html.dark-mode .post-meta,
 body.dark-mode .post-meta {
   color: #9ca3af;
 }
 
+html.dark-mode .post-content p,
+html.dark-mode .post-content li,
 body.dark-mode .post-content p,
 body.dark-mode .post-content li {
   color: #e5e7eb;
 }
 
+html.dark-mode .post-content h1,
+html.dark-mode .post-content h2,
+html.dark-mode .post-content h3,
+html.dark-mode .post-content h4,
+html.dark-mode .post-content h5,
+html.dark-mode .post-content h6,
 body.dark-mode .post-content h1,
 body.dark-mode .post-content h2,
 body.dark-mode .post-content h3,
@@ -66,16 +86,22 @@ body.dark-mode .post-content h6 {
   color: #ffffff;
 }
 
+html.dark-mode .post-content blockquote,
 body.dark-mode .post-content blockquote {
   border-left-color: #4b5563;
   background-color: #1f2937;
 }
 
+html.dark-mode .post-content blockquote p,
 body.dark-mode .post-content blockquote p {
   color: #d1d5db;
 }
 
 /* Dark mode code block styles */
+html.dark-mode .highlight,
+html.dark-mode .highlight pre,
+html.dark-mode .highlight code,
+html.dark-mode .highlighter-rouge .highlight,
 body.dark-mode .highlight,
 body.dark-mode .highlight pre,
 body.dark-mode .highlight code,
@@ -84,26 +110,45 @@ body.dark-mode .highlighter-rouge .highlight {
   color: #e5e7eb;
 }
 
+html.dark-mode .highlight .c,
 body.dark-mode .highlight .c { color: #608b4e; } /* Comment */
+html.dark-mode .highlight .err,
 body.dark-mode .highlight .err { color: #f44747; background-color: transparent; } /* Error */
+html.dark-mode .highlight .k,
 body.dark-mode .highlight .k { color: #569cd6; } /* Keyword */
+html.dark-mode .highlight .o,
 body.dark-mode .highlight .o { color: #d4d4d4; } /* Operator */
+html.dark-mode .highlight .cm,
 body.dark-mode .highlight .cm { color: #608b4e; } /* Comment.Multiline */
+html.dark-mode .highlight .cp,
 body.dark-mode .highlight .cp { color: #608b4e; } /* Comment.Preproc */
+html.dark-mode .highlight .c1,
 body.dark-mode .highlight .c1 { color: #608b4e; } /* Comment.Single */
+html.dark-mode .highlight .cs,
 body.dark-mode .highlight .cs { color: #608b4e; } /* Comment.Special */
+html.dark-mode .highlight .gd,
 body.dark-mode .highlight .gd { color: #f44747; background-color: transparent; } /* Generic.Deleted */
+html.dark-mode .highlight .gi,
 body.dark-mode .highlight .gi { color: #6a9955; background-color: transparent; } /* Generic.Inserted */
+html.dark-mode .highlight .kd,
 body.dark-mode .highlight .kd { color: #569cd6; } /* Keyword.Declaration */
+html.dark-mode .highlight .s,
 body.dark-mode .highlight .s { color: #ce9178; } /* Literal.String */
+html.dark-mode .highlight .na,
 body.dark-mode .highlight .na { color: #9cdcfe; } /* Name.Attribute */
+html.dark-mode .highlight .nb,
 body.dark-mode .highlight .nb { color: #dcdcaa; } /* Name.Builtin */
+html.dark-mode .highlight .nc,
 body.dark-mode .highlight .nc { color: #4ec9b0; } /* Name.Class */
+html.dark-mode .highlight .nf,
 body.dark-mode .highlight .nf { color: #dcdcaa; } /* Name.Function */
+html.dark-mode .highlight .nt,
 body.dark-mode .highlight .nt { color: #569cd6; } /* Name.Tag */
+html.dark-mode .highlight .nv,
 body.dark-mode .highlight .nv { color: #9cdcfe; } /* Name.Variable */
 
 /* Dark mode inline code */
+html.dark-mode code,
 body.dark-mode code {
   background-color: #2d2d2d;
   color: #e5e7eb;
@@ -111,33 +156,43 @@ body.dark-mode code {
 }
 
 /* Dark mode share section */
+html.dark-mode .share,
 body.dark-mode .share {
   border-top-color: #374151;
 }
 
+html.dark-mode .share p,
 body.dark-mode .share p {
   color: #9ca3af;
 }
 
 /* Light mode styles */
+html.light-mode,
 body.light-mode {
   /* background-color: #f8f9fa; */
   background-color: #f8f9fa;
   color: #212529;
 }
 
+html.light-mode .moon-icon,
 body.light-mode .moon-icon {
   fill: #212529;
 }
 
+html.light-mode a,
 body.light-mode a {
   color: #212529;
 }
 
+html.light-mode a:hover,
 body.light-mode a:hover {
   color: #6c757d;
 }
 
+html.light-mode .text-muted,
+html.light-mode .card-description,
+html.light-mode .social-links h2,
+html.light-mode .currently h3,
 body.light-mode .text-muted,
 body.light-mode .card-description,
 body.light-mode .social-links h2,
@@ -145,12 +200,14 @@ body.light-mode .currently h3 {
   color: #6c757d;
 }
 
+html.light-mode .card-year,
 body.light-mode .card-year {
   background-color: rgba(0, 0, 0, 0.05);
   color: #6c757d;
   border: 1px solid #dee2e6;
 }
 
+html.light-mode .category-badge,
 body.light-mode .category-badge {
   background-color: rgba(0, 0, 0, 0.1);
   color: #212529;

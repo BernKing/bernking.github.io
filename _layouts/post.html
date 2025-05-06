@@ -5,7 +5,12 @@ layout: compress
 <html>
   {% include head.html %}
   <link rel="stylesheet" href="/assets/css/toc.css">
-  <body class="dark-mode">
+  <script>
+    // Apply theme immediately to prevent flash
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.classList.add(savedTheme + '-mode');
+  </script>
+  <body>
     <main class="wrapper">
       <div class="container">
         {% include header-copy.html %}
