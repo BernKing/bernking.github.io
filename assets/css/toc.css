@@ -1,0 +1,114 @@
+.floating-toc-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  width: 300px;
+  background-color: rgba(30, 30, 30, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  max-height: 60px;
+  overflow: hidden;
+}
+
+.light-mode .floating-toc-container {
+  background-color: rgba(245, 245, 245, 0.95);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.floating-toc-container.toc-expanded {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.floating-toc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.light-mode .floating-toc-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.floating-toc-header .current-section {
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 240px;
+}
+
+.floating-toc-header .toc-toggle {
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+.floating-toc-content {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.toc-item {
+  padding: 8px 15px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.light-mode .toc-item {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.toc-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.light-mode .toc-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.toc-item.active {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.light-mode .toc-item.active {
+  background-color: rgba(0, 0, 0, 0.08);
+  color: #000000;
+}
+
+.toc-level-1 {
+  font-weight: 600;
+}
+
+.toc-level-2 {
+  padding-left: 25px;
+}
+
+.toc-level-3 {
+  padding-left: 35px;
+  font-size: 13px;
+}
+
+.toc-level-4 {
+  padding-left: 45px;
+  font-size: 12px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .floating-toc-container {
+    width: calc(100% - 40px);
+    right: 20px;
+    left: 20px;
+  }
+} 
