@@ -1,9 +1,10 @@
 ---
 layout: post
-title: "Chrome Password Stealer"
+title: "Chrome Password Stealer (145+ stars)"
 date: 2024-07-16
 categories: [cybersecurity, maldev]
-banner_img: "/assets/images/image-removebg-preview.png"
+banner_img: "/assets/images/chrome-stealer-art.png"
+description: "A detailed walkthrough of decrypting Chrome saved passwords in C++."
 ---
 
 # Introduction

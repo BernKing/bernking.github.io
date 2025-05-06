@@ -1,16 +1,28 @@
 ---
-layout: default
+layout: compress
 ---
-
-<article class="post container" itemscope itemtype="http://schema.org/BlogPosting">
-  <header class="post-header">
-    <p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time>{% if page.author %} &middot; <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>{% endif %}</p>
-    <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
-  </header>
-  <div class="post-content" itemprop="articleBody">
-    {{ content }}
-    {% include post-share.html %}
-  </div>
-</article>
-
-{% include comments.html %}
+<!DOCTYPE html>
+<html>
+  {% include head.html %}
+  <body class="dark-mode">
+    <main class="wrapper">
+      <div class="container">
+        {% include header-copy.html %}
+      </div>
+      <article class="post container" itemscope itemtype="http://schema.org/BlogPosting" style="margin-top: -2rem;">
+        <header class="post-header">
+          <p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time>{% if page.author %} &middot; <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>{% endif %}</p>
+          <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
+        </header>
+        <div class="post-content" itemprop="articleBody">
+          {{ content }}
+          {% include post-share.html %}
+        </div>
+      </article>
+      {% include comments.html %}
+      {% include footer-new.html %}
+    </main>
+    {% include foot.html %}
+    <script src="/assets/js/theme.js"></script>
+  </body>
+</html>

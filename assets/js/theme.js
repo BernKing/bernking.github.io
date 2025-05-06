@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const currentTheme = localStorage.getItem('theme') || 'dark';
   
   // Apply the theme class to body
+  // First remove any existing theme classes to avoid conflicts
+  document.body.classList.remove('light-mode', 'dark-mode');
   document.body.classList.add(currentTheme + '-mode');
   
   // Add event listener to toggle button

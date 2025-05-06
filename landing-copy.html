@@ -149,85 +149,44 @@ permalink: /landing-copy/
     
     <div class="currently">
       <h3>CURRENTLY</h3>
-      <p>Collaborating with companies from pre-seed to post-IPO.</p>
-      <p>Studying <span class="underline">design and information systems</span> at the University of Toronto.</p>
+      <p>Developing <a href="https://www.scout-vision.com" class="underline">Scout Vision</a>, a platform for soccer scouting.</p>
+      <p>Studying computer science in Portugal.</p>
     </div>
   </section>
 
   <!-- Projects Section -->
   <section class="projects">
-    <!-- First row of projects -->
+    <!-- Projects grid populated from posts -->
     <div class="projects-row">
-      <a href="#" class="project-card">
-        <div class="card-image-container">
-          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-oW4uTj9H2V3IfDyHFtDeYlM7FuvSWW.png" alt="Project One" class="card-image">
-        </div>
-        <div class="card-content">
-          <div class="card-header">
-            <h3 class="card-title">Project One</h3>
-            <span class="card-year">Apr 15, 2024</span>
+      {% for post in site.posts %}
+        <a href="{{ post.url | prepend: site.baseurl }}" class="project-card">
+          <div class="card-image-container">
+            {% if post.banner_img %}
+              <img src="{{ post.banner_img }}" alt="{{ post.title }}" class="card-image">
+            {% else %}
+              <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-oW4uTj9H2V3IfDyHFtDeYlM7FuvSWW.png" alt="{{ post.title }}" class="card-image">
+            {% endif %}
           </div>
-          <p class="card-description">AI-powered, collaborative code editor (1400+ stars)</p>
-          <div class="card-categories">
-            <span class="category-badge">AI</span>
-            <span class="category-badge">Development</span>
+          <div class="card-content">
+            <div class="card-header">
+              <h3 class="card-title">{{ post.title }}</h3>
+              <span class="card-year">{{ post.date | date: "%b %-d, %Y" }}</span>
+            </div>
+            {% if post.description %}
+              <p class="card-description">{{ post.description }}</p>
+            {% else %}
+              <p class="card-description">{{ post.content | strip_html | truncatewords: 15 }}</p>
+            {% endif %}
+            {% if post.categories.size > 0 %}
+              <div class="card-categories">
+                {% for category in post.categories %}
+                  <span class="category-badge">{{ category }}</span>
+                {% endfor %}
+              </div>
+            {% endif %}
           </div>
-        </div>
-      </a>
-      
-      <a href="#" class="project-card">
-        <div class="card-image-container">
-          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-ptuCs7sGXElbiBySaI7LDKlohE2yYd.png" alt="Project Two" class="card-image">
-        </div>
-        <div class="card-content">
-          <div class="card-header">
-            <h3 class="card-title">Project Two</h3>
-            <span class="card-year">Mar 28, 2024</span>
-          </div>
-          <p class="card-description">Distributed training marketplace to democratize large AI models</p>
-          <div class="card-categories">
-            <span class="category-badge">AI</span>
-            <span class="category-badge">Marketplace</span>
-          </div>
-        </div>
-      </a>
-    </div>
-    
-    <!-- Second row of projects -->
-    <div class="projects-row">
-      <a href="#" class="project-card">
-        <div class="card-image-container">
-          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-ONW7FBQnBPzQ3OIjRO7GGwPqI8iOUW.png" alt="Project Three" class="card-image">
-        </div>
-        <div class="card-content">
-          <div class="card-header">
-            <h3 class="card-title">Project Three</h3>
-            <span class="card-year">Nov 12, 2023</span>
-          </div>
-          <p class="card-description">Optimizing earthquake resistant construction</p>
-          <div class="card-categories">
-            <span class="category-badge">Simulation</span>
-            <span class="category-badge">Engineering</span>
-          </div>
-        </div>
-      </a>
-      
-      <a href="#" class="project-card">
-        <div class="card-image-container">
-          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-oW4uTj9H2V3IfDyHFtDeYlM7FuvSWW.png" alt="Project Four" class="card-image">
-        </div>
-        <div class="card-content">
-          <div class="card-header">
-            <h3 class="card-title">Project Four</h3>
-            <span class="card-year">Sep 5, 2023</span>
-          </div>
-          <p class="card-description">City simulation of human behavior and interactions</p>
-          <div class="card-categories">
-            <span class="category-badge">Simulation</span>
-            <span class="category-badge">Social Science</span>
-          </div>
-        </div>
-      </a>
+        </a>
+      {% endfor %}
     </div>
   </section>
 </main>
