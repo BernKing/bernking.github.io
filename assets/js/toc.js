@@ -4,7 +4,7 @@
 //  • Generates stable, unique heading IDs
 //  • Always open (no toggle/collapse functionality)
 //  • Non-scrollable TOC content
-//  • Completely hidden on mobile devices
+//  • Toggle button available on all devices
 //  • Dynamic positioning to avoid content overlap (left side)
 //  • Toggle button to show/hide TOC
 //  • Cleaner, smaller code‑path
@@ -19,9 +19,6 @@ Required CSS additions (keep near your TOC styles)
 */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Skip TOC creation on mobile devices
-  if (window.innerWidth < 768) return;
-
   /* ------------------------------------------------------------------
      1. Check for user preference on TOC visibility
   ------------------------------------------------------------------ */
@@ -65,9 +62,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const postContent = document.querySelector('.post-content');
     if (!postContent) return;
     
+    // For mobile, we don't need to adjust width based on content
+    if (window.innerWidth < 768) {
+      // Mobile - reset any desktop-specific styles
+      tocContainer.style.width = '';
+      tocContainer.style.left = '20px';
+      return;
+    }
+    
+    // Desktop positioning logic
     const postRect = postContent.getBoundingClientRect();
     const contentLeftEdge = postRect.left;
-    const windowWidth = window.innerWidth;
     
     // Calculate available space on the left side
     const availableSpace = Math.max(0, contentLeftEdge - 40); // 40px buffer
@@ -80,15 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
       // Plenty of space - use default sizing from CSS
       tocContainer.style.width = '';
       tocContainer.style.left = '20px';
-    }
-    
-    // Handle visibility
-    if (window.innerWidth < 768) {
-      tocContainer.style.display = 'none';
-      toggleButton.style.display = 'none';
-    } else {
-      tocContainer.style.display = '';
-      toggleButton.style.display = '';
     }
   };
   

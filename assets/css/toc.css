@@ -192,9 +192,27 @@
   }
 }
 
-/* Mobile - hide completely */
+/* Mobile styles - Keep toggle button but style TOC appropriately */
 @media (max-width: 768px) {
-  .floating-toc-container, .toc-toggle-button {
-    display: none;
+  .floating-toc-container {
+    width: calc(100% - 40px);
+    max-width: none;
+    left: 20px;
+    right: 20px;
+    top: 70px;
+  }
+  
+  .toc-visible .toc-toggle-button {
+    left: 20px;
+    top: 20px;
+  }
+  
+  /* Keep the toggle button visible */
+  .toc-toggle-button {
+    display: flex !important;
+  }
+  
+  .floating-toc-container.toc-expanded {
+    max-height: 70vh;
   }
 } 
