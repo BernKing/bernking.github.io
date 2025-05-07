@@ -1,15 +1,69 @@
 .floating-toc-container {
   position: fixed;
   top: 20px;
-  right: 20px;
+  left: 20px;
   z-index: 1000;
-  width: 300px;
+  width: 280px;
+  max-width: 25vw; /* Dynamic width based on viewport */
   background-color: rgba(30, 30, 30, 0.9);
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   max-height: 60px;
   overflow: hidden;
+}
+
+/* TOC toggle button */
+.toc-toggle-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1001;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(30, 30, 30, 0.9);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  border: none;
+  outline: none;
+  font-size: 20px;
+}
+
+.light-mode .toc-toggle-button {
+  background-color: rgba(245, 245, 245, 0.95);
+  color: #333;
+}
+
+.toc-toggle-button:hover {
+  transform: scale(1.1);
+}
+
+.toc-hidden .floating-toc-container {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.toc-visible .toc-toggle-button {
+  left: 320px; /* Position beside the TOC when visible */
+}
+
+@media (max-width: 1200px) {
+  .toc-visible .toc-toggle-button {
+    left: 290px;
+  }
+}
+
+@media (max-width: 992px) {
+  .toc-visible .toc-toggle-button {
+    left: 260px;
+  }
 }
 
 .light-mode .floating-toc-container {
@@ -42,12 +96,28 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 240px;
+  max-width: calc(100% - 30px); /* Adjust to container width */
 }
 
 .floating-toc-header .toc-toggle {
   font-size: 12px;
   transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.light-mode .floating-toc-header .toc-toggle {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.arrow-icon {
+  transition: transform 0.3s ease;
+  stroke-width: 2.5;
 }
 
 .floating-toc-content {
@@ -60,8 +130,9 @@
   padding: 8px 15px;
   text-decoration: none;
   font-size: 14px;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
   color: rgba(255, 255, 255, 0.8);
+  border-left: 3px solid transparent;
 }
 
 .light-mode .toc-item {
@@ -79,11 +150,13 @@
 .toc-item.active {
   background-color: rgba(255, 255, 255, 0.2);
   color: #ffffff;
+  border-left: 3px solid #3498db;
 }
 
 .light-mode .toc-item.active {
   background-color: rgba(0, 0, 0, 0.08);
   color: #000000;
+  border-left: 3px solid #3498db;
 }
 
 .toc-level-1 {
@@ -104,11 +177,24 @@
   font-size: 12px;
 }
 
-/* Mobile responsiveness */
-@media (max-width: 768px) {
+/* Responsive breakpoints */
+@media (max-width: 1200px) {
   .floating-toc-container {
-    width: calc(100% - 40px);
-    right: 20px;
-    left: 20px;
+    width: 250px;
+    max-width: 30vw;
+  }
+}
+
+@media (max-width: 992px) {
+  .floating-toc-container {
+    width: 220px;
+    max-width: 35vw;
+  }
+}
+
+/* Mobile - hide completely */
+@media (max-width: 768px) {
+  .floating-toc-container, .toc-toggle-button {
+    display: none;
   }
 } 
