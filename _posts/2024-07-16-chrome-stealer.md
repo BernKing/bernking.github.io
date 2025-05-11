@@ -5,6 +5,7 @@ date: 2024-07-16
 categories: [cybersecurity, maldev]
 banner_img: "/assets/images/chrome-stealer-art.png"
 description: "A detailed walkthrough of decrypting Chrome saved passwords in C++."
+pinned: 2
 ---
 
 # Introduction
