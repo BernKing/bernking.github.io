@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Scout Vision"
-date: 2024-11-29
+date: 2025-01-15
 categories: [startup, webdev]
 banner_img: "/assets/images/scout-vision-banner.png"
 description: "A platform that helps football clubs organize their scouting departments."
