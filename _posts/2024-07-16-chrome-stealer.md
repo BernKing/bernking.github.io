@@ -8,6 +8,12 @@ description: "A detailed walkthrough of decrypting Chrome saved passwords in C++
 pinned: 2
 ---
 
+<style>
+.post-content a {
+  text-decoration: underline;
+}
+</style>
+
 # Introduction
 
 The current blog post describes de decryption process of Chrome saved passwords. While I found several resources explaining the process in Python, the ones available in C/C++ didnt' satisfy me. Therefore, I decided to build and create my own write-up about the process.

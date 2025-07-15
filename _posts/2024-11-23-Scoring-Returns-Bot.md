@@ -7,6 +7,12 @@ banner_img: "/assets/images/banner_scoring.png"
 description: "A Discord bot that tracks live football games, providing real-time updates and statistics."
 ---
 
+<style>
+.post-content a {
+  text-decoration: underline;
+}
+</style>
+
 # Introduction
 
 The following blog post describes the process of creating a Discord bot that tracks live games between two teams in more than 75 leagues. The bot is open source and easily customizable.

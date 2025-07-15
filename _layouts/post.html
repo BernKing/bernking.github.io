@@ -5,6 +5,10 @@ layout: compress
 <html>
   {% include head.html %}
   <link rel="stylesheet" href="/assets/css/toc.css">
+  <style>
+    /* show zoom cursor */
+    .post-content img { cursor: zoom-in; }
+  </style>
   <script>
     // Apply theme immediately to prevent flash
     const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -32,5 +36,11 @@ layout: compress
     {% include foot.html %}
     <script src="/assets/js/theme.js"></script>
     <script src="/assets/js/toc.js"></script>
+
+    <!-- medium-zoom to enlarge images on click -->
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js"></script>
+    <script>
+      mediumZoom('.post-content img', { margin: 24, background: 'rgba(0,0,0,0.8)' });
+    </script>
   </body>
 </html>

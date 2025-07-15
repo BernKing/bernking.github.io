@@ -229,4 +229,20 @@ body.light-mode .category-badge {
 
 .theme-toggle:hover {
   transform: scale(1.1);
+}
+
+/* Simplified PDF link */
+.download-pdf-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0;
+  border: none;
+  background: transparent;
+  text-decoration: underline;
+}
+.download-pdf-link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+  background: transparent;
 } 

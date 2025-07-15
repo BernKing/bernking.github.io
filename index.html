@@ -162,16 +162,18 @@ title: Home
     
     <div class="currently">
       <h3>CURRENTLY</h3>
-      <p>Developing <a href="https://www.scout-vision.com" class="underline">Scout Vision</a>, a platform for soccer scouting.</p>
+      <!--  <p>Developing <a href="https://www.scout-vision.com" class="underline">Scout Vision</a>, a platform for soccer scouting.</p> -->
+      <p>Developing and experimenting with new malware development techniques and proof of concepts.</p>
       <p>Studying computer science in Portugal.</p>
     </div>
   </section>
 
   <!-- Projects Section -->
   <section class="projects">
-    <!-- Pinned Projects Section -->
     <div class="projects-row">
       {% assign pinned_posts = site.posts | where_exp: "post", "post.pinned" | sort: "pinned" %}
+      {% assign regular_posts = site.posts | where_exp: "post", "post.pinned == nil" %}
+
       {% for post in pinned_posts %}
         <a href="{{ post.url | prepend: site.baseurl }}" class="project-card">
           <div class="card-image-container">
@@ -182,7 +184,7 @@ title: Home
             {% if post.banner_img %}
               <img src="{{ post.banner_img }}" alt="{{ post.title }}" class="card-image">
             {% else %}
-              <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-oW4uTj9H2V3IfDyHFtDeYlM7FuvSWW.png" alt="{{ post.title }}" class="card-image">
+              <img src="/assets/images/base_image.png" alt="{{ post.title }}" class="card-image">
             {% endif %}
           </div>
           <div class="card-content">
@@ -205,18 +207,14 @@ title: Home
           </div>
         </a>
       {% endfor %}
-    </div>
 
-    <!-- Regular Projects Section -->
-    <div class="projects-row">
-      {% assign regular_posts = site.posts | where_exp: "post", "post.pinned == nil" %}
       {% for post in regular_posts %}
         <a href="{{ post.url | prepend: site.baseurl }}" class="project-card">
           <div class="card-image-container">
             {% if post.banner_img %}
               <img src="{{ post.banner_img }}" alt="{{ post.title }}" class="card-image">
             {% else %}
-              <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-oW4uTj9H2V3IfDyHFtDeYlM7FuvSWW.png" alt="{{ post.title }}" class="card-image">
+              <img src="/assets/images/base_image.png" alt="{{ post.title }}" class="card-image">
             {% endif %}
           </div>
           <div class="card-content">

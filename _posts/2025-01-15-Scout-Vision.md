@@ -5,7 +5,7 @@ date: 2025-01-15
 categories: [startup, webdev]
 banner_img: "/assets/images/scout-vision-banner.png"
 description: "A platform that helps football clubs organize their scouting departments."
-pinned: 1
+pinned: 3
 ---
 
 # Introduction
